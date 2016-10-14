@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .articuloCarrito {
+                border: 2px solid lightblue;
+                float: left;
+                color: blue;
+            }
+        </style>
+        <script>
+            var contArt1 = 0;
+            var contArt2 = 0;
+            var contArt3 = 0;
+            var contArt4 = 0;
+
+            function removeChart() {
+                var carrito = document.getElementById("carrito");
+                while (carrito.hasChildNodes()) {
+                    carrito.removeChild(carrito.lastChild);
+                }
+                contArt1 = 0;
+                contArt2 = 0;
+                contArt3 = 0;
+                contArt4 = 0;
+            }
+
+            function addToCart(id) {
+                var cantidadArt;
+                switch (id) {
+                    case "art1":
+                        contArt1++;
+                        cantidadArt = contArt1;
+                        break;
+                    case "art2":
+                        contArt2++;
+                        cantidadArt = contArt2;
+                        break;
+                    case "art3":
+                        contArt3++;
+                        cantidadArt = contArt3;
+                        break;
+                    case "art4":
+                        contArt4++;
+                        cantidadArt = contArt4;
+                        break;
+                }
+
+                var articulo = document.getElementById(id);
+                var stocktamaño = document.getElementById("stock").childNodes.length;
+                var stock = document.getElementById("stock");
+                var carrito = document.getElementById("carrito");
+                var imgsrc = document.getElementById(id+"img").getAttribute("src");
+                var newImg = document.createElement("img");
+                newImg.setAttribute("src", imgsrc);
+                newImg.setAttribute("height", "100");
+                newImg.setAttribute("width", "100");
+                var newText = document.createTextNode(articulo.getElementsByTagName('p')[0].textContent);
+                var newP = document.createElement("p");
+                var newDiv = document.createElement("div");
+                var cantidadP = document.createElement("p");
+                var cantidadText = document.createTextNode("Cantidad: " + cantidadArt.toString());
+                newDiv.className = "articuloCarrito";
+                newDiv.id = "new" + id.toString();
+
+                if (cantidadArt > 1) {
+                    //if there is already more than 1 of that item we work on its <p> instead
+                    var newArt = document.getElementById(newDiv.id);
+                    newArt.getElementsByTagName("p")[1].textContent = "Cantidad: "+cantidadArt.toString();
+                    var priceText = articulo.getElementsByTagName("p")[0].textContent;
+                    var getPrice = parseInt(priceText.substring(priceText.lastIndexOf(" ")+1,priceText.lastIndexOf("€")));      
+                    finalPrice = getPrice * cantidadArt;
+                    newArt.getElementsByTagName("p")[0].textContent = "Precio: "+finalPrice+"€";
+                } else { 
+                    newDiv.appendChild(newImg);
+                    newP.appendChild(newText);
+                    newDiv.appendChild(newP);
+                    cantidadP.appendChild(cantidadText);
+                    newDiv.appendChild(cantidadP);
+                    carrito.appendChild(newDiv);
+                } 
+
+            }
+        </script>
+    </head>
+    <body>
+        <div id="stock" style="clear: both;">
+            <div id="art1" style="float: left; border: 2px solid lightslategrey;" onclick="addToCart(this.id)">
+                <img id="art1img" src="https://sgfm.elcorteingles.es/SGFM/dctm/MEDIA02/CONTENIDOS/201510/14/00115215556828____1__640x640.jpg"  height="100" width="100">
+                <p>Precio: 300€</p>
+            </div>
+            <div id="art2" style="float: left; border: 2px solid lightslategrey;" onclick="addToCart(this.id)">
+                <img id="art2img" src="http://www.triobest.com/wp-content/uploads/2015/03/nice-gaming-laptop-under-800.jpg" height="100" width="100">
+                <p>Precio: 500€</p>
+            </div>
+            <div id="art3" style="float: left; border: 2px solid lightslategrey;" onclick="addToCart(this.id)">
+                <img id="art3img" src="https://thumb.pccomponentes.com/w-530-530/articles/9/96964/asus-f540sa-xx068t-intel-celeron-n3050-4gb-500gb-15-6-1.jpg" height="100" width="100">
+                <p>Precio: 800€</p>
+            </div>
+            <div id="art4" style="float: left; border: 2px solid lightslategrey;" onclick="addToCart(this.id)">
+                <img id="art4img" src="https://thumb.pccomponentes.com/w-530-530/articles/9/93768/msi-ge72-6qd-007es-i7-6700hq-16gb-1tb-128-ssd-gtx960m-17-3-1.jpg" height="100" width="100">
+                <p>Precio: 900€</p>
+            </div>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br>
+        <h1>Total carrito: </h1>
+        <br>
+        <div id="carrito">
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+        <div><input type="Button" value="Vaciar carrito" onclick="removeChart()"></div>
+    </body>
+</html>
