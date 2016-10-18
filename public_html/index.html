@@ -53,12 +53,15 @@ and open the template in the editor.
                         cantidadArt = contArt4;
                         break;
                 }
-
+                var priceText;
+                var totalChartText = document.getElementById("totalChartText");
+                var chartPrice = 0;
+                var getPrice;
                 var articulo = document.getElementById(id);
                 var stocktamaño = document.getElementById("stock").childNodes.length;
                 var stock = document.getElementById("stock");
                 var carrito = document.getElementById("carrito");
-                var imgsrc = document.getElementById(id+"img").getAttribute("src");
+                var imgsrc = document.getElementById(id + "img").getAttribute("src");
                 var newImg = document.createElement("img");
                 newImg.setAttribute("src", imgsrc);
                 newImg.setAttribute("height", "100");
@@ -74,19 +77,27 @@ and open the template in the editor.
                 if (cantidadArt > 1) {
                     //if there is already more than 1 of that item we work on its <p> instead
                     var newArt = document.getElementById(newDiv.id);
-                    newArt.getElementsByTagName("p")[1].textContent = "Cantidad: "+cantidadArt.toString();
-                    var priceText = articulo.getElementsByTagName("p")[0].textContent;
-                    var getPrice = parseInt(priceText.substring(priceText.lastIndexOf(" ")+1,priceText.lastIndexOf("€")));      
+                    newArt.getElementsByTagName("p")[1].textContent = "Cantidad: " + cantidadArt.toString();
+                    priceText = articulo.getElementsByTagName("p")[0].textContent;
+                    getPrice = parseInt(priceText.substring(priceText.lastIndexOf(" ") + 1, priceText.lastIndexOf("€")));
                     finalPrice = getPrice * cantidadArt;
-                    newArt.getElementsByTagName("p")[0].textContent = "Precio: "+finalPrice+"€";
-                } else { 
+                    newArt.getElementsByTagName("p")[0].textContent = "Precio: " + finalPrice + "€";
+                    chartPrice += getPrice;
+                    
+                    totalChartText.textContent = chartPrice;
+                } else {
                     newDiv.appendChild(newImg);
                     newP.appendChild(newText);
                     newDiv.appendChild(newP);
                     cantidadP.appendChild(cantidadText);
                     newDiv.appendChild(cantidadP);
                     carrito.appendChild(newDiv);
-                } 
+                    
+                    priceText = articulo.getElementsByTagName("p")[0].textContent;
+                    getPrice = parseInt(priceText.substring(priceText.lastIndexOf(" ") + 1, priceText.lastIndexOf("€")));                   
+                    chartPrice += getPrice;
+                    totalChartText.textContent += chartPrice+" €";
+                }
 
             }
         </script>
@@ -111,7 +122,7 @@ and open the template in the editor.
             </div>
         </div>
         <br><br><br><br><br><br><br><br><br><br><br>
-        <h1>Total carrito: </h1>
+        <h1 id="totalChartText">Total carrito: </h1>
         <br>
         <div id="carrito">
         </div>

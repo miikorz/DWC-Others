@@ -6,10 +6,19 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>menubar</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script>
+            function listDetails() {
+                var drinklist = document.getElementById("listabebidas");
+                var msg;
+                msg="Elementos: "+drinklist.length+"\n";
+                msg+="Bebida: "+drinklist.options[drinklist.selectedIndex].value+"\n";
+                msg+=drinklist.options[drinklist.selectedIndex].text+"\n";
+                
+                alert(msg);
+            }
             function calculateAmount() {
                 var total = 0;
                 var menu = document.getElementsByName("plato");
@@ -28,6 +37,13 @@ and open the template in the editor.
             <h2>Tapas</h2>
             <input type="checkbox" name="plato" value="3"> Bravas 3€
             <input type="checkbox" name="plato" value="9"> Calamares 9€<br><br>
+            <h2>Bebidas</h2>
+            <select name="bebidas" id="listabebidas">
+                <option>Agua</option>
+                <option>Cocacola</option>
+                <option>Cerveza</option>
+                <option>Zumo</option>
+            </select><br><br>
             <h2>Platos</h2>
             <input type="checkbox" name="plato" value="10"> Paella 10€
             <input type="checkbox" name="plato" value="8"> Arroz al horno 8€<br><br>
@@ -36,7 +52,8 @@ and open the template in the editor.
             <input type="checkbox" name="plato" value="2"> Fruta 2€<br><br>
             <input type="Button" value="Calcular total" onclick="calculateAmount()">
             -
-            <input type="text" name="totaltext" id="totalfinal">
+            <input type="text" name="totaltext" id="totalfinal"><br><br>
+            <input type="Button" value="Datos bebidas lista" onclick="listDetails()">
         </form>
         </div>
     </body>

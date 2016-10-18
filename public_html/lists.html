@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Javascript lists</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function addToList() {
+                var id = prompt("Introduce id de lista: ")
+            }
+            function getNumberOfElements() {
+                var numbers = document.getElementById("numberslist");
+                var letters = document.getElementById("letterslist");
+                var msg;
+                msg = "Elementos: " + numbers.length + "\n";
+                msg += "Elementos: " + letters.length + "\n";
+                alert(msg);
+            }
+        </script>
+    </head>
+    <body>
+        <select name="numbers" id="numberslist">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>          
+        </select>
+        <select name="letters" id="letterslist">
+            <option>a</option>
+            <option>b</option>
+            <option>c</option>
+            <option>d</option>
+            <option>e</option>
+            <option>f</option>
+            <option>g</option>
+            <option>h</option>
+            <option>i</option>
+            <option>j</option>
+            <option>k</option>
+        </select>
+        <input type="Button" value="Nº elementos listas" onclick="getNumberOfElements()"><br>
+        <input type="text" id="texttoadd">
+        <input type="Button" value="Añadir a la lista" onclick="addToList()">
+    </body>
+</html>
