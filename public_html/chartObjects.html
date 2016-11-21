@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Carrito Objects</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="Articulo.js"></script>
+        <script type="text/javascript">
+            micarrito = new Carrito("28/07/2016", "Pepe Perez");
+            
+            function addArticulo() {        
+                id = prompt("Dime el id");
+                nombre = prompt("Dime el nombre");
+                descripcion = prompt("Dime la desc");
+                precio = prompt("Dime el precio");
+                
+                articulo1 = new Articulo(id, nombre, descripcion, precio);
+                micarrito.anyade(articulo1);
+                window.alert(articulo1.id+" "+articulo1.nombre+" "+articulo1.descripcion+" "+articulo1.precio);
+            }
+            
+            function showCarrito(){
+                micarrito.mostrar();
+                micarrito.totalCarrito();
+            }
+            
+            function showJSON(){
+                
+            }
+        </script>
+    </head>
+    <body>
+        <div><input type="button" value="Añadir articulo" onclick="addArticulo()"/></div>
+        <div><input type="button" value="Mostrar carrito" onclick="showCarrito()"/></div>
+        <div><input type="button" value="Ver JSON" onclick="showJSON()"/></div>
+    </body>
+</html>

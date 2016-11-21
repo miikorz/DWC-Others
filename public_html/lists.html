@@ -10,8 +10,25 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script>
+            function removeAll(){
+                var list1 = document.getElementById("numberslist");
+                var list2 = document.getElementById("letterslist");
+                /*for (var i = 0; i < list1.lenght(); i++) {
+                    list1.remove(0);
+                    list2.remove(0);
+                }*/
+                //list1.length = 0; works in the same way
+                list1.length = 0;
+                list2.length = 0;
+            }
+            
             function addToList() {
                 var id = prompt("Introduce id de lista: ")
+                var list = document.getElementById(id);
+                var option = document.createElement("option");
+                option.text = document.getElementById("texttoadd").value;
+                list.add(option);
+                
             }
             function getNumberOfElements() {
                 var numbers = document.getElementById("numberslist");
@@ -52,5 +69,6 @@ and open the template in the editor.
         <input type="Button" value="Nº elementos listas" onclick="getNumberOfElements()"><br>
         <input type="text" id="texttoadd">
         <input type="Button" value="Añadir a la lista" onclick="addToList()">
+        <input type="Button" value="Borrar todo" onclick="removeAll()">
     </body>
 </html>
